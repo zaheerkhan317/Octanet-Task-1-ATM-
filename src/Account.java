@@ -1,23 +1,29 @@
 import java.util.ArrayList;
 
 public class Account {
+    private String username;
     private double balance;
     private int pin;
     private ArrayList<String> transactionHistory;
 
-    public Account(double initialBalance, int pin) {
+    public Account(String username, double initialBalance, int pin) {
+        this.username = username;
         this.balance = initialBalance;
         this.pin = pin;
         this.transactionHistory = new ArrayList<>();
         transactionHistory.add("Account created with initial balance: " + initialBalance);
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public double getBalance() {
         return balance;
     }
 
-    public boolean checkPin(int enteredPin) {
-        return this.pin == enteredPin;
+    public boolean checkCredentials(String enteredUsername, int enteredPin) {
+        return this.username.equals(enteredUsername) && this.pin == enteredPin;
     }
 
     public void changePin(int newPin) {

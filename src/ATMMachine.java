@@ -14,13 +14,15 @@ public class ATMMachine {
 
         // Login process
         for (int attempts = 0; attempts < maxAttempts; attempts++) {
+            System.out.print("Enter Username: ");
+            String enteredUsername = scanner.next();
             System.out.print("Enter PIN: ");
             int enteredPin = scanner.nextInt();
-            if (account.checkPin(enteredPin)) {
+            if (account.checkCredentials(enteredUsername, enteredPin)) {
                 authenticated = true;
                 break;
             } else {
-                System.out.println("Incorrect PIN. Try again.");
+                System.out.println("Incorrect username or PIN. Try again.");
             }
         }
 
