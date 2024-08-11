@@ -55,4 +55,8 @@ public class Account {
             System.out.println(transaction);
         }
     }
+
+    public ArrayList<String> getTransactionHistory() {
+        return transactionHistory;
+    }
 }
