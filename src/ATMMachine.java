@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ATMMachine {
@@ -9,29 +11,8 @@ public class ATMMachine {
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        int maxAttempts = 3;
-        boolean authenticated = false;
-
-        // Login process
-        for (int attempts = 0; attempts < maxAttempts; attempts++) {
-            System.out.print("Enter Username: ");
-            String enteredUsername = scanner.next();
-            System.out.print("Enter PIN: ");
-            int enteredPin = scanner.nextInt();
-            if (account.checkCredentials(enteredUsername, enteredPin)) {
-                authenticated = true;
-                break;
-            } else {
-                System.out.println("Incorrect username or PIN. Try again.");
-            }
-        }
-
-        if (!authenticated) {
-            System.out.println("Maximum attempts exceeded. Exiting.");
-            return;
-        }
-
         boolean exit = false;
+
         while (!exit) {
             System.out.println("\nATM Machine:");
             System.out.println("1. Account Balance Inquiry");
@@ -76,5 +57,14 @@ public class ATMMachine {
             }
         }
         scanner.close();
+    }
+
+    public static Account login(List<Account> accounts, String username, int enteredPin) {
+        for (Account account : accounts) {
+            if (account.getUsername().equals(username) && account.checkPin(enteredPin)) {
+                return account;
+            }
+        }
+        return null;
     }
 }

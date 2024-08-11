@@ -22,8 +22,8 @@ public class Account {
         return balance;
     }
 
-    public boolean checkCredentials(String enteredUsername, int enteredPin) {
-        return this.username.equals(enteredUsername) && this.pin == enteredPin;
+    public boolean checkPin(int enteredPin) {
+        return this.pin == enteredPin;
     }
 
     public void changePin(int newPin) {
